@@ -1,10 +1,13 @@
 #Updating records in a binary file
 
-import pickle
 
 def update():
     F=open("D:\\12th File handle\\class.dat",'rb+')
-    S=pickle.load(F)
+    S=F.read()
+    for i in S:
+    if type(i)is bytes:
+        i=i.decode()
+    print(S)
     found=0
     rno=int(input("enter the roll number you want to update"))
     for i in S:
@@ -19,13 +22,17 @@ def update():
 
     else:
        F.seek(0)
-       pickle.dump(S,F)
+       byte=json.dumps(S).encode("utf-8")
+       F.write(byte)
 
-    F.close()    
+     F.close()    
 
 update()
 
 F=open("D:\\12th File handle\\class.dat","rb")
-val=pickle.load(F)
+val=F.read()
+for i in val:
+    if type(i)is bytes:
+        i=i.decode()
 print(val)
 F.close()
