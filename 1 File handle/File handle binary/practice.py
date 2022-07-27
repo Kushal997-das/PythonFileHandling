@@ -13,8 +13,7 @@ while True:
     ch=input("Do you want to enter more records? y/n")
     if ch in ["n","N"]:
         break
-    else:
-        pass
+
 byte=json.dumps(rec).encode("utf-8")
 F.write(byte) 
 print("Data written successfully")   
