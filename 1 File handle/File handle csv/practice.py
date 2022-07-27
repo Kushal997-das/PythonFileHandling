@@ -19,8 +19,8 @@ try:
     w.writerows(rec) 
     F.close()
 
-except:
-    pass
+except EOFError:
+    print("pass")
 
 #reading from a csv file:
 import csv
@@ -31,5 +31,5 @@ try:
     for i in r:
         print(i,end="*")
     F.close()    
-except:
-    pass       
+except EOFError:
+    print("pass")       
