@@ -1,11 +1,14 @@
 #binary file to search a given record
 
-import pickle
+import json
 
 def binary_search():
     F=open("D:\\12th File handle\\studrec.dat",'rb')  
     # your file path will be different
-    value=pickle.load(F)
+    value=F.read()
+    for i in value:
+        if type(i)is bytes:
+            i=i.decode()
     search=0
     rno=int(input("Enter the roll number of the student"))
 
