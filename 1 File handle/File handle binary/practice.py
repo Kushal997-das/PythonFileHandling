@@ -1,5 +1,6 @@
+
 #Writing in a binary file:
-import pickle
+import json
 F=open("D:\\12th File handle\\Practice.dat","ab")
 rec=[]
 while True:
@@ -14,12 +15,13 @@ while True:
         break
     else:
         pass
-pickle.dump(rec,F) 
+byte=json.dumps(rec).encode("utf-8")
+F.write(byte) 
 print("Data written successfully")   
 F.close()
 
 #Reading data in a binary file
-import pickle
+
 
 try:
     F=open("D:\\12th File handle\\practice.dat","rb")
@@ -28,15 +30,19 @@ try:
         print(i[0],i[1],i[2],i[3],sep="\n")
     print("End of file")
     F.close()
-except:
-    EOFError
+except EOFError:
+   
     print("End of file reached")    
 
 #Updating records in a binary file
 import pickle
 try:
     F=open("D:\\12th File handle\\practice.dat","rb+")
-    value=pickle.load(F)
+    value=F.read()
+    for i in value:
+    if type(i)is bytes:
+        i=i.decode()
+    print(value)
     found=0
     rno=int(input("Enter the roll number of the student to update record"))
     for i in value:
@@ -51,17 +57,19 @@ try:
     if found==0:
         print("Record not found")
     F.close()    
-except:
-    EOFError
+except EOFError:
     print("end of file reached")
 
 #Deleting records in a binary file
-import pickle
+
 F=open("D:\\12th File handle\\practice.dat","rb")
 found=0
 rec=[]
 
-value=pickle.dump(F)
+value=F.read()
+for i in value:
+    if type(i)is bytes:
+        i=i.decode()
 rno=int(input("Enter the roll number to delete record"))
 F.close()
 
@@ -72,5 +80,6 @@ for i in value:
         continue
     else:
         rec.append(i)
-pickle.dump(rec,F)     
+byte=json.dumps(value).encode("utf-8") 
+F.write(byte)
 F.close()   
