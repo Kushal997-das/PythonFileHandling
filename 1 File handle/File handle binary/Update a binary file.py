@@ -1,5 +1,5 @@
 #Updating records in a binary file
-
+import json
 
 def update():
     F=open("D:\\12th File handle\\class.dat",'rb+')
