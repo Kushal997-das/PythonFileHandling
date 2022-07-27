@@ -1,10 +1,14 @@
 #updating records in a bnary file
 
-import pickle
+import json
 
 def update():
     F=open("D:\\12th File handle\\studrec.dat","rb+")
-    value=pickle.load(F)
+    value=F.read()
+    for i in value:
+    if type(i)is bytes:
+        i=i.decode()
+    print(value)
     found=0
     roll=int(input("Enter the roll number of the record"))
     for i in value:
@@ -19,9 +23,10 @@ def update():
         print("Record not found")
 
     else:
-        pickle.dump(value,F)
+        byte=json.dumps(value).encode("utf-8")
+        F.write(byte)
         F.seek(0)
-        newval=pickle.load(F)
+        newval=F.read()
         print(newval)
         
     F.close()
