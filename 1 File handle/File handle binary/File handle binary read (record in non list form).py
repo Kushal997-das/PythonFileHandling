@@ -1,9 +1,12 @@
-import pickle
+
 
 def binaryread():
     B=open("D:\\12th File handle\\studrec.dat","rb")
-    stud=pickle.load(B)
-    print(stud)
+    value=B.read()
+    for i in value:
+    if type(i)is bytes:
+        i=i.decode()
+    print(value)
 
     # prints the whole record in nested list format
     print("contents of binary file")
